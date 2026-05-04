@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Favorite Person 💖</title>
+    <title>For Dishita, My Love 💖</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
     <style>
         * {
@@ -20,43 +20,58 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
             text-align: center;
             position: relative;
         }
 
-        /* Floating background hearts */
+        /* Ambient Floating Hearts */
         .heart-bg {
             position: absolute;
             color: #ffb3c6;
             font-size: 24px;
-            animation: floatUp 4s infinite linear;
+            animation: floatUp 4.5s infinite linear;
             opacity: 0.6;
-            z-index: 0;
+            z-index: 1;
             user-select: none;
+            pointer-events: none;
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+            0% { transform: translateY(105vh) scale(0.6) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-15vh) scale(1.3) rotate(360deg); opacity: 0; }
         }
 
+        /* Glassmorphism main container */
         .container {
-            background: white;
-            padding: 30px 35px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(255, 154, 178, 0.3);
-            max-width: 420px;
-            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px 30px;
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(255, 133, 162, 0.25);
+            max-width: 400px;
+            width: 88%;
             z-index: 10;
-            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 192, 203, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gif-container {
+            width: 100%;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
         }
 
         .gif-container img {
-            width: 170px;
-            height: 170px;
-            margin-bottom: 15px;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
         }
 
@@ -64,38 +79,40 @@
             font-family: 'Fredoka One', cursive;
             color: #ff477e;
             font-size: 26px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.3;
         }
 
         .message {
             color: #6c757d;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15.5px;
             margin-bottom: 25px;
-            min-height: 48px;
-            padding: 0 10px;
+            min-height: 52px;
+            line-height: 1.4;
         }
 
+        /* Fixed-height wrapper prevents card shifting */
         .btn-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
             position: relative;
-            height: 60px;
+            width: 100%;
+            height: 65px;
         }
 
         button {
             border: none;
-            padding: 12px 32px;
+            padding: 12px 34px;
             font-size: 18px;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             font-family: 'Fredoka One', cursive;
             transition: all 0.2s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
         }
 
         .yes-btn {
@@ -105,7 +122,7 @@
         }
 
         .yes-btn:hover {
-            background-color: #259e93;
+            background-color: #23a89c;
             transform: scale(1.08);
         }
 
@@ -113,7 +130,8 @@
             background-color: #ff4d6d;
             color: white;
             position: absolute;
-            transition: all 0.15s ease-out;
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+            white-space: nowrap;
         }
 
         .hidden {
@@ -131,7 +149,7 @@
 
     <div class="container" id="main-card">
         <div class="gif-container">
-            <img id="cute-gif" src="https://media.tenor.com/7S8YgZ-N_XQAAAAi/sad-cry.gif" alt="Please forgive me">
+            <img id="cute-gif" src="https://media.tenor.com/7S8YgZ-N_XQAAAAi/sad-cry.gif" alt="Pleading GIF">
         </div>
         <h1 id="main-heading">Dishita, I'm so sorry... 🥺</h1>
         <p class="message" id="apology-text">To the love of my life: Can you please forgive me? I promise to make it up to you! 💖</p>
@@ -144,14 +162,14 @@
 
     <div class="container hidden" id="success-card">
         <div class="gif-container">
-            <img src="https://media.tenor.com/mSshv30f0Q0AAAAi/peach-goma.gif" alt="Happy couple">
+            <img src="https://media.tenor.com/mSshv30f0Q0AAAAi/peach-goma.gif" alt="Happy couple GIF">
         </div>
         <h1>Yay! Thank you, Dishita! 🥰</h1>
-        <p class="message">You truly are the love of my life and the sweetest person ever! I love you so much! ❤️✨</p>
+        <p class="message">You are the absolute love of my life! I'm so lucky to have you. I love you so much! ❤️✨</p>
     </div>
 
     <script>
-        // Cute, personalized messages when she hovers over "No"
+        // Rotating text to make the 'No' button run even more fun
         const messages = [
             "Wait, are you sure? 🥺",
             "Dishita, pretty please? 🌸",
@@ -170,34 +188,37 @@
         const noBtn = document.getElementById('noBtn');
         const textMsg = document.getElementById('apology-text');
 
-        // Makes the No button move away when hovered or clicked
+        // Moves the NO button randomly within safe layout limits
         function moveNoButton() {
             textMsg.innerText = messages[clickCount % messages.length];
             clickCount++;
 
-            // Yes button grows slightly to make clicking it easier
+            // Grow the Yes button to make it a bigger, easier target
             let currentScale = 1 + (clickCount * 0.12);
             yesBtn.style.transform = `scale(${currentScale})`;
 
-            // Constrain movement within the container
             const container = document.getElementById('main-card');
+            
+            // Constrain button inside the card box safely
+            const padding = 20;
             const maxX = (container.clientWidth / 2) - noBtn.clientWidth;
             const maxY = (container.clientHeight / 2) - noBtn.clientHeight;
 
-            const randomX = Math.floor(Math.random() * (maxX * 2)) - maxX;
-            const randomY = Math.floor(Math.random() * (maxY * 1.2)) - maxY;
+            // Generate clean random bounds within card dimensions
+            const randomX = Math.floor(Math.random() * (maxX * 2 - padding)) - (maxX - padding/2);
+            const randomY = Math.floor(Math.random() * (maxY * 1.2 - padding)) - (maxY - padding/2);
 
             noBtn.style.left = `${randomX}px`;
             noBtn.style.top = `${randomY}px`;
         }
 
-        // When the Yes button is clicked
+        // Action when Yes button is clicked
         function forgiven() {
             document.getElementById('main-card').classList.add('hidden');
             document.getElementById('success-card').classList.remove('hidden');
 
-            // Launch a long, continuous confetti celebration
-            const duration = 3.5 * 1000;
+            // Trigger beautiful dual-burst confetti
+            const duration = 3500;
             const end = Date.now() + duration;
 
             (function frame() {
@@ -222,17 +243,17 @@
             }());
         }
 
-        // Floating hearts effect
+        // Ambient background effect
         function createHearts() {
             const spawner = document.getElementById('heart-spawner');
             const heartEmojis = ['💖', '🌸', '✨', '💕'];
-            for (let i = 0; i < 18; i++) {
+            for (let i = 0; i < 15; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart-bg';
                 heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.animationDuration = 3 + Math.random() * 2.5 + 's';
+                heart.style.animationDuration = 3.5 + Math.random() * 2 + 's';
                 spawner.appendChild(heart);
             }
         }
@@ -240,4 +261,3 @@
     </script>
 </body>
 </html>
-
